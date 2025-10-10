@@ -973,7 +973,7 @@ export default function Home() {
 
       {/* Modal Overlay */}
       {showModal && selectedPost && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-6 pb-4 px-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Blurred Background */}
           <div
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
@@ -983,7 +983,7 @@ export default function Home() {
 
           {/* Modal Content */}
           <div
-            className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-[450px] w-full h-[94vh] overflow-y-auto overflow-x-hidden hide-scrollbar"
+            className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-[450px] w-full max-h-[90vh] sm:h-[94vh] overflow-y-auto overflow-x-hidden hide-scrollbar"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -1042,7 +1042,7 @@ export default function Home() {
                 <img
                   src="/elephants.jpg"
                   alt="Post cover"
-                  className="pt-11 w-full h-[370px] scale-125 object-fill rounded-t-2xl"
+                  className="pt-11 w-full h-[350px] sm:h-[370px] scale-125 object-fill rounded-t-2xl"
                 />
               )}
 
@@ -1051,7 +1051,7 @@ export default function Home() {
                 <img
                   src={selectedPost.media[0]}
                   alt="Post cover"
-                  className="pt-11 p-3 w-full h-[370px] scale-125 object-fill rounded-t-2xl"
+                  className="pt-11 p-3 w-full h-[250px] sm:h-[370px] scale-125 object-fill rounded-t-2xl"
                 />
               )}
 
