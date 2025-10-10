@@ -33,6 +33,45 @@ const hideScrollbarCSS = `
   .hover\\:rotateX-5:hover {
     transform: rotateX(5deg);
   }
+
+  /* Loading animations */
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(180deg); }
+  }
+
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-180deg); }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(90deg); }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 3.5s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 4s ease-in-out infinite;
+    animation-delay: 1s;
+  }
 `;
 
 // Inject CSS
@@ -452,6 +491,8 @@ export default function Home() {
   const [currentImage, setCurrentImage] = useState<'elephant' | 'hiran'>('elephant');
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMorePosts, setHasMorePosts] = useState(true);
   const imageRefs = useRef<Map<number, HTMLImageElement | null>>(new Map());
 
   useEffect(() => {
@@ -536,6 +577,46 @@ export default function Home() {
     setShowModal(false);
     setSelectedPost(null);
   };
+
+  // Simulate loading more posts (replace with actual API call)
+  const loadMorePosts = useCallback(async () => {
+    if (isLoading || !hasMorePosts) return;
+    
+    setIsLoading(true);
+    
+    // Simulate API delay (replace with actual fetch)
+    await new Promise(resolve => setTimeout(resolve, 2500));
+    
+    // Check if we have more posts to show
+    const nextBatch = visibleCount + step;
+    if (nextBatch >= posts.length) {
+      setVisibleCount(posts.length); // Show all remaining posts
+      setHasMorePosts(false);
+    } else {
+      setVisibleCount(nextBatch);
+    }
+    
+    setIsLoading(false);
+  }, [isLoading, hasMorePosts, visibleCount, step, posts.length]);
+
+  // Infinite scroll handler
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isLoading || !hasMorePosts) return;
+      
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Load more when user is 200px from bottom
+      if (scrollTop + windowHeight >= documentHeight - 200) {
+        loadMorePosts();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loadMorePosts, isLoading, hasMorePosts]);
   return (
     <div className="min-h-dvh px-4 lg:px-12 py-6 lg:py-8 bg-gradient-to-br from-[#f8fafc] to-[#eef2ff] dark:from-[#0b0f17] dark:to-[#0a0a0a]">
       <div className="mx-auto max-w-8xl">
@@ -601,10 +682,41 @@ export default function Home() {
 
               {/* Image section - full width */}
               <div className="relative w-auto h-100 bg-black overflow-hidden">
-                {/* Check if this is the second image (index 1) - Scroll reveal effect */}
-                {index === 1 ? (
+                {/* Random transition effects based on post index */}
+                {index % 7 === 0 ? (
                   <>
-                    {/* Elephant image - shows when currentImage is 'elephant' */}
+                    {/* Ripple wave effect */}
+                    <img
+                      ref={(el) => { imageRefs.current.set(index, el) }}
+                      src="/elephants.jpg"
+                      alt="Post cover"
+                      className="w-full h-full object-cover transition-all duration-1000 ease-out will-change-transform"
+                      style={{
+                        transform: currentImage === 'elephant' ? 'translateY(0px) scale(1.2)' : 'translateY(50px) scale(1.1)',
+                        objectPosition: 'center 40%',
+                        opacity: currentImage === 'elephant' ? '1' : '0',
+                        clipPath: currentImage === 'elephant' ? 'circle(100% at 50% 50%)' : 'circle(0% at 50% 50%)',
+                        transition: 'opacity 1s ease-in-out, transform 1s ease-out, clip-path 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                      }}
+                      loading="lazy"
+                    />
+                    <img
+                      src="/hiran.jpg"
+                      alt="Post cover"
+                      className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out will-change-transform"
+                      style={{
+                        transform: currentImage === 'hiran' ? 'translateY(0px) scale(1.2)' : 'translateY(-50px) scale(1.1)',
+                        objectPosition: 'center 40%',
+                        opacity: currentImage === 'hiran' ? '1' : '0',
+                        clipPath: currentImage === 'hiran' ? 'circle(100% at 50% 50%)' : 'circle(0% at 50% 50%)',
+                        transition: 'opacity 1s ease-in-out, transform 1s ease-out, clip-path 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                      }}
+                      loading="lazy"
+                    />
+                  </>
+                ) : index % 7 === 2 ? (
+                  <>
+                    {/* Scroll reveal effect */}
                     <img
                       ref={(el) => { imageRefs.current.set(index, el) }}
                       src="/elephants.jpg"
@@ -619,8 +731,6 @@ export default function Home() {
                       }}
                       loading="lazy"
                     />
-
-                    {/* Hiran image - scroll reveal effect */}
                     <img
                       src="/hiran.jpg"
                       alt="Post cover"
@@ -635,9 +745,9 @@ export default function Home() {
                       loading="lazy"
                     />
                   </>
-                ) : index === 2 ? (
+                ) : index % 7 === 4 ? (
                   <>
-                    {/* Elephant image - shows when currentImage is 'elephant' */}
+                    {/* Slice by slice effect */}
                     <img
                       ref={(el) => { imageRefs.current.set(index, el) }}
                       src="/elephants.jpg"
@@ -651,84 +761,20 @@ export default function Home() {
                       }}
                       loading="lazy"
                     />
-
-                    {/* Hiran image - Framer Motion brick-by-brick effect */}
-                    <motion.div
-                      variants={{
-                        visible: {
-                          transition: {
-                            staggerChildren: 0.02,
-                          },
-                        },
-                      }}
-                      initial="hidden"
-                      animate={currentImage === 'hiran' ? "visible" : "hidden"}
-                      className="absolute inset-0  grid grid-cols-10 grid-rows-10 overflow-hidden"
-                    >
-                      {Array.from({ length: 100 }, (_, i) => {
-                        const col = i % 10;
-                        const row = Math.floor(i / 10);
-
-                        // Calculate exact tile dimensions based on container
-                        // Assuming container is roughly 400px x 400px (adjust based on your actual size)
-                        const containerWidth = 400;
-                        const containerHeight = 400;
-                        const tileWidth = containerWidth / 10; // 40px per tile
-                        const tileHeight = containerHeight / 10; // 40px per tile
-
-                        return (
-                          <motion.div
-                            key={i}
-                            variants={{
-                              hidden: { opacity: 0, scale: 0.8 },
-                              visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
-                            }}
-                            className="w-full h-full bg-cover"
-                            style={{
-                              backgroundImage: `url(/hiran.jpg)`,
-                              backgroundSize: `${containerWidth * 1.05}px ${containerHeight * 1.15}px`,
-                              backgroundPosition: `-${col * tileWidth * 1.02}px -${row * tileHeight * 1.02}px`,
-                              transform: 'scale(1.2)',
-                              objectPosition: 'center 40%'
-                            }}
-                          />
-                        );
-                      })}
-                    </motion.div>
-                  </>
-                ) : index % 5 === 4 ? (
-                  <>
-                    {/* Elephant image - shows when currentImage is 'elephant' */}
-                    <img
-                      ref={(el) => { imageRefs.current.set(index, el) }}
-                      src="/elephants.jpg"
-                      alt="Post cover"
-                      className="w-full h-full object-cover transition-all duration-500 ease-out will-change-transform"
-                      style={{
-                        transform: 'translateY(0px) scale(1.2)',
-                        objectPosition: 'center 40%',
-                        opacity: currentImage === 'elephant' ? '1' : '0',
-                        transition: 'opacity 0.5s ease-in-out'
-                      }}
-                      loading="lazy"
-                    />
-
-                    {/* Hiran image - slice by slice effect */}
                     <div className="absolute inset-0">
-                      {/* Create horizontal slices */}
-                      {Array.from({ length: 8 }, (_, index) => (
+                      {Array.from({ length: 8 }, (_, sliceIndex) => (
                         <div
-                          key={index}
+                          key={sliceIndex}
                           className="absolute overflow-hidden transition-all duration-400 ease-out"
                           style={{
                             width: '100%',
-                            height: '12.5%', // 100% / 8 slices
-                            top: `${index * 12.5}%`,
+                            height: '12.5%',
+                            top: `${sliceIndex * 12.5}%`,
                             left: '0%',
                             transform: (sliceAnimation && currentImage === 'hiran')
                               ? 'translateX(0px) scaleY(1)'
-                              : `translateX(${index % 2 === 0 ? '-100%' : '100%'}) scaleY(0.3)`,
-                            transitionDelay: `${index * 150}ms`,
+                              : `translateX(${sliceIndex % 2 === 0 ? '-100%' : '100%'}) scaleY(0.3)`,
+                            transitionDelay: `${sliceIndex * 150}ms`,
                             opacity: (sliceAnimation && currentImage === 'hiran') ? '1' : '0'
                           }}
                         >
@@ -739,7 +785,7 @@ export default function Home() {
                             style={{
                               transform: 'scale(1.2)',
                               objectPosition: 'center 40%',
-                              marginTop: `-${index * 12.5}%`,
+                              marginTop: `-${sliceIndex * 12.5}%`,
                               height: '800%'
                             }}
                             loading="lazy"
@@ -841,19 +887,79 @@ export default function Home() {
             </article>
           ))}
         </div>
-        {posts.length > defaultVisibleCount && visibleCount < posts.length && (
-          <div className="mt-6 flex justify-center">
-            <button
-              type="button"
-              onClick={() => {
-                setVisibleCount(Math.min(visibleCount + step, posts.length));
-              }}
-              className="inline-flex items-center rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium text-foreground backdrop-blur transition hover:bg-white/20"
-            >
-              View more
-            </button>
+        {/* Loading indicator with skeleton cards */}
+        {isLoading && (
+          <div className="mt-6">
+            <div className="flex justify-center mb-4">
+              <div className="flex space-x-1">
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              </div>
+            </div>
+            
+            {/* Skeleton loading cards */}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: step }, (_, i) => (
+                <div key={i} className="group relative rounded-2xl shadow-lg bg-white dark:bg-gray-800 h-[500px] sm:h-[495px] overflow-hidden">
+                  {/* Platform logos skeleton */}
+                  <div className="p-2 border-b border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                      </div>
+                      <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                    </div>
+                  </div>
+
+                  {/* Image skeleton with shimmer effect */}
+                  <div className="relative w-auto h-100 bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 animate-pulse">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                    </div>
+                    
+                    {/* Floating elements */}
+                    <div className="absolute top-1/4 left-1/4 w-8 h-8 bg-white/30 rounded-full animate-float"></div>
+                    <div className="absolute top-1/3 right-1/3 w-6 h-6 bg-white/20 rounded-full animate-float-delayed"></div>
+                    <div className="absolute bottom-1/3 left-1/3 w-10 h-10 bg-white/25 rounded-full animate-float-slow"></div>
+                  </div>
+
+                  {/* Content skeleton */}
+                  <div className="absolute inset-x-0 bottom-0 p-2">
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent" />
+                    <div className="relative z-10">
+                      <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse mb-2"></div>
+                      <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-3/4"></div>
+                    </div>
+                  </div>
+
+                  {/* Bottom section skeleton */}
+                  <div className="p-3 border-t border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                      </div>
+                      <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-20"></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
+
+        {/* End of posts message */}
+        {/* {!hasMorePosts && visibleCount >= posts.length && (
+          <div className="mt-6 flex justify-center">
+            <div className="inline-flex items-center rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium text-foreground/60 backdrop-blur">
+              No more posts to load
+            </div>
+          </div>
+        )} */}
+
       </div>
 
       {/* Modal Overlay */}
