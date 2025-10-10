@@ -983,7 +983,7 @@ export default function Home() {
 
           {/* Modal Content */}
           <div
-            className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-[450px] w-full max-h-[90vh] sm:h-[94vh] overflow-y-auto overflow-x-hidden hide-scrollbar"
+            className="relative bg-gray-900 rounded-2xl shadow-2xl max-w-[450px] w-full max-h-[90vh] sm:h-[94vh] overflow-y-auto overflow-x-hidden hide-scrollbar"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -1063,14 +1063,14 @@ export default function Home() {
             <div className="p-4 pt-15">
               {/* Date Only */}
               <div className="mb-4">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-gray-400">
                   {formatDate(selectedPost.postedAt)}
                 </p>
               </div>
 
               {/* Post Content */}
               <div className="prose dark:prose-invert mb-4">
-                <p className="text-gray-900 dark:text-gray-300 leading-7 text-base">
+                <p className="text-gray-300 leading-7 text-base">
                   {selectedPost.content}
                 </p>
               </div>
