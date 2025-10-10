@@ -601,41 +601,8 @@ export default function Home() {
 
               {/* Image section - full width */}
               <div className="relative w-auto h-100 bg-black overflow-hidden">
-                {/* Check if this is the first image (index 0) - Liquid morph effect */}
-                {index === 0 ? (
-                  <>
-                    {/* Elephant image - shows when currentImage is 'elephant' */}
-                    <img
-                      ref={(el) => { imageRefs.current.set(index, el) }}
-                      src="/elephants.jpg"
-                      alt="Post cover"
-                      className="w-full h-full object-cover transition-all duration-1000 ease-out will-change-transform"
-                      style={{
-                        transform: currentImage === 'elephant' ? 'translateY(0px) scale(1.2)' : 'translateY(50px) scale(1.1)',
-                        objectPosition: 'center 40%',
-                        opacity: currentImage === 'elephant' ? '1' : '0',
-                        clipPath: currentImage === 'elephant' ? 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' : 'polygon(20% 0%, 80% 0%, 60% 100%, 40% 100%)',
-                        transition: 'opacity 1s ease-in-out, transform 1s ease-out, clip-path 1.5s cubic-bezier(0.4, 0, 0.2, 1)'
-                      }}
-                      loading="lazy"
-                    />
-
-                    {/* Hiran image - liquid morph effect */}
-                    <img
-                      src="/hiran.jpg"
-                      alt="Post cover"
-                      className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out will-change-transform"
-                      style={{
-                        transform: currentImage === 'hiran' ? 'translateY(0px) scale(1.2)' : 'translateY(-50px) scale(1.1)',
-                        objectPosition: 'center 40%',
-                        opacity: currentImage === 'hiran' ? '1' : '0',
-                        clipPath: currentImage === 'hiran' ? 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' : 'polygon(30% 0%, 70% 0%, 80% 100%, 20% 100%)',
-                        transition: 'opacity 1s ease-in-out, transform 1s ease-out, clip-path 1.5s cubic-bezier(0.4, 0, 0.2, 1)'
-                      }}
-                      loading="lazy"
-                    />
-                  </>
-                ) : index === 1 ? (
+                {/* Check if this is the second image (index 1) - Scroll reveal effect */}
+                {index === 1 ? (
                   <>
                     {/* Elephant image - shows when currentImage is 'elephant' */}
                     <img
