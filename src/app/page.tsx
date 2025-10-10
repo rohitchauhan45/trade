@@ -1091,7 +1091,7 @@ export default function Home() {
 
 
               {/* External Link */}
-              <div className="pt-4 border-gray-200 pl-30 dark:border-gray-700">
+              <div className="pt-4 border-gray-200 lg:pl-30 pl-22 dark:border-gray-700">
                   <a 
                     href="#" 
                     className="inline-flex bg-gray-700 items-center justify-center px-4 py-2 text-[16px] font-medium text-gray-400 hover:text-blue-700 transition-colors rounded-lg"
