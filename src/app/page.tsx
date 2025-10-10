@@ -520,7 +520,7 @@ export default function Home() {
         setTimeout(() => {
           setCurrentImage('hiran');
           setShowHiranImage(true);
-        }, 2500);
+        }, 2000);
       } else {
         // Switch back to elephant
         setTimeout(() => {
@@ -528,7 +528,7 @@ export default function Home() {
           setCurrentImage('elephant');
           setShowHiranImage(false);
           setSliceAnimation(false);
-        }, 2000);
+        }, 2500);
       }
     }, 2500); // Change every 2.5 seconds
 
@@ -863,21 +863,30 @@ export default function Home() {
               <div className="p-3 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <button className="text-gray-100 hover:text-red-500 transition-colors" title="Like">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                      </svg>
-                    </button>
-                    <button className="text-gray-100 hover:text-blue-500 transition-colors" title="Comment">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                      </svg>
-                    </button>
-                    <button className="text-gray-100 hover:text-green-500 transition-colors" title="Share">
-                      <svg className="w-6 h-6 rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                    </button>
+                    <div className="flex items-center gap-1">
+                      <button className="text-red-500 hover:text-red-600 transition-colors" title="Like">
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                      </button>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">{((index * 7 + 3) % 50) + 1}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <button className="text-gray-100 hover:text-blue-500 transition-colors" title="Comment">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                      </button>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">{((index * 5 + 2) % 20) + 1}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <button className="text-gray-100 hover:text-green-500 transition-colors" title="Share">
+                        <svg className="w-6 h-6 rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                      </button>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">{((index * 3 + 1) % 15) + 1}</span>
+                    </div>
                   </div>
                   <span className="text-sm text-gray-500 dark:text-gray-400">
                     {formatDate(post.postedAt)}
@@ -1081,38 +1090,17 @@ export default function Home() {
               )}
 
 
-              {/* Engagement Metrics */}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-semibold text-gray-900 dark:text-white">Total Engagements</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">5</span>
-                  </div>
-                  <div className="border-b border-gray-100 dark:border-gray-800"></div>
-
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700 dark:text-gray-300">Views</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">24</span>
-                  </div>
-                  <div className="border-b border-gray-100 dark:border-gray-800"></div>
-
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700 dark:text-gray-300">Likes</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">1</span>
-                  </div>
-                  <div className="border-b border-gray-100 dark:border-gray-800"></div>
-
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700 dark:text-gray-300">Comments</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">1</span>
-                  </div>
-                  <div className="border-b border-gray-100 dark:border-gray-800"></div>
-
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700 dark:text-gray-300">Shares</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">0</span>
-                  </div>
-                </div>
+              {/* External Link */}
+              <div className="pt-4 border-gray-200 pl-30 dark:border-gray-700">
+                  <a 
+                    href="#" 
+                    className="inline-flex bg-gray-700 items-center justify-center px-4 py-2 text-[16px] font-medium text-gray-400 hover:text-blue-700 transition-colors rounded-lg"
+                  >
+                  View Full Details
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
