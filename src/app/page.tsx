@@ -901,30 +901,30 @@ export default function Home() {
           <div className="mt-6">
             <div className="flex justify-center mb-4">
               <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                <div className="w-2 h-2 bg-gray-500 sm:bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 bg-gray-500 sm:bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 bg-gray-500 sm:bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
               </div>
             </div>
             
             {/* Skeleton loading cards */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {Array.from({ length: step }, (_, i) => (
-                <div key={i} className="group relative rounded-2xl shadow-lg bg-white dark:bg-gray-800 h-[500px] sm:h-[495px] overflow-hidden">
+                <div key={i} className="group relative rounded-2xl shadow-lg bg-gray-800 sm:bg-white dark:bg-gray-800 h-[500px] sm:h-[495px] overflow-hidden">
                   {/* Platform logos skeleton */}
-                  <div className="p-2 border-b border-gray-200 dark:border-gray-700">
+                  <div className="p-2 border-b border-gray-600 sm:border-gray-200 dark:border-gray-700">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
-                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                        <div className="w-6 h-6 bg-gray-600 sm:bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                        <div className="w-6 h-6 bg-gray-600 sm:bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
                       </div>
-                      <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                      <div className="w-6 h-6 bg-gray-600 sm:bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
                     </div>
                   </div>
 
                   {/* Image skeleton with shimmer effect */}
-                  <div className="relative w-auto h-100 bg-gray-200 dark:bg-gray-700 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 animate-pulse">
+                  <div className="relative w-auto h-100 bg-gray-700 sm:bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 sm:from-gray-200 sm:via-gray-300 sm:to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 animate-pulse">
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
                     </div>
                     
@@ -938,20 +938,20 @@ export default function Home() {
                   <div className="absolute inset-x-0 bottom-0 p-2">
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent" />
                     <div className="relative z-10">
-                      <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse mb-2"></div>
-                      <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-3/4"></div>
+                      <div className="h-4 bg-gray-600 sm:bg-gray-300 dark:bg-gray-600 rounded animate-pulse mb-2"></div>
+                      <div className="h-3 bg-gray-600 sm:bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-3/4"></div>
                     </div>
                   </div>
 
                   {/* Bottom section skeleton */}
-                  <div className="p-3 border-t border-gray-200 dark:border-gray-700">
+                  <div className="p-3 border-t border-gray-600 sm:border-gray-200 dark:border-gray-700">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
-                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
-                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
-                        <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                        <div className="w-6 h-6 bg-gray-600 sm:bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                        <div className="w-6 h-6 bg-gray-600 sm:bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
+                        <div className="w-6 h-6 bg-gray-600 sm:bg-gray-300 dark:bg-gray-600 rounded animate-pulse"></div>
                       </div>
-                      <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-20"></div>
+                      <div className="h-4 bg-gray-600 sm:bg-gray-300 dark:bg-gray-600 rounded animate-pulse w-20"></div>
                     </div>
                   </div>
                 </div>
