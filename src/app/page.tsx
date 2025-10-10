@@ -618,21 +618,21 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [loadMorePosts, isLoading, hasMorePosts]);
   return (
-    <div className="min-h-dvh px-4 lg:px-12 py-6 lg:py-8 bg-gradient-to-br from-[#f8fafc] to-[#eef2ff] dark:from-[#0b0f17] dark:to-[#0a0a0a]">
+    <div className="min-h-dvh px-4 lg:px-12 py-6 lg:py-8 bg-gradient-to-br from-[#0b0f17] to-[#0a0a0a] sm:from-[#f8fafc] sm:to-[#eef2ff] dark:from-[#0b0f17] dark:to-[#0a0a0a]">
       <div className="mx-auto max-w-8xl">
         <div className="mb-6 flex items-center justify-between">
-          <h1 className="text-2xl font-semibold tracking-tight">Posts</h1>
-          <span className="text-sm text-foreground/60">{posts.length} total</span>
+          <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-gray-900 dark:text-white">Posts</h1>
+          <span className="text-sm text-gray-400 sm:text-foreground/60 dark:text-gray-400">{posts.length} total</span>
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visiblePosts.map((post, index) => (
             <article
               key={index}
-              className="group relative rounded-2xl shadow-lg transition hover:shadow-xl bg-white dark:bg-gray-800 h-[500px] sm:h-[495px]"
+              className="group relative rounded-2xl shadow-lg transition hover:shadow-xl bg-gray-800 sm:bg-white dark:bg-gray-800 h-[500px] sm:h-[495px]"
             >
               {/* Platform logos above image */}
-              <div className="p-2 border-b border-gray-200 dark:border-gray-700">
+              <div className="p-2 border-b border-gray-600 sm:border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     {post.platforms.map((platform, idx) => (
@@ -860,7 +860,7 @@ export default function Home() {
               </div>
 
               {/* Interaction buttons and date below image */}
-              <div className="p-3 border-t border-gray-200 dark:border-gray-700">
+              <div className="p-3 border-t border-gray-600 sm:border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
@@ -869,7 +869,7 @@ export default function Home() {
                           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                         </svg>
                       </button>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{((index * 7 + 3) % 50) + 1}</span>
+                      <span className="text-sm text-gray-300 sm:text-gray-600 dark:text-gray-400">{((index * 7 + 3) % 50) + 1}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <button className="text-gray-100 hover:text-blue-500 transition-colors" title="Comment">
@@ -877,7 +877,7 @@ export default function Home() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                         </svg>
                       </button>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{((index * 5 + 2) % 20) + 1}</span>
+                      <span className="text-sm text-gray-300 sm:text-gray-600 dark:text-gray-400">{((index * 5 + 2) % 20) + 1}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <button className="text-gray-100 hover:text-green-500 transition-colors" title="Share">
@@ -885,10 +885,10 @@ export default function Home() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>
                       </button>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{((index * 3 + 1) % 15) + 1}</span>
+                      <span className="text-sm text-gray-300 sm:text-gray-600 dark:text-gray-400">{((index * 3 + 1) % 15) + 1}</span>
                     </div>
                   </div>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                  <span className="text-sm text-gray-400 sm:text-gray-500 dark:text-gray-400">
                     {formatDate(post.postedAt)}
                   </span>
                 </div>
