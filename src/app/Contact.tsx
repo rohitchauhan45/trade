@@ -30,7 +30,7 @@ export default function Contact() {
         {/* Contact header aligns with content on the right */}
         <div className="mt-8 sm:mt-12 lg:mt-20 pl-0 sm:pl-4 lg:pl-10 grid grid-cols-1 lg:grid-cols-2 ">
           <div className="hidden lg:block" />
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-sans lg:justify-self-start text-center lg:text-left">
+          <h1 className="text-[20px] sm:text-2xl lg:text-3xl font-sans lg:justify-self-start text-center lg:text-left">
             Contact Us
           </h1>
         </div>
@@ -40,8 +40,8 @@ export default function Contact() {
           {/* Left Column */}
           <div className="flex pt-8 sm:pt-12 lg:pt-15 items-center sm:items-start">
             <h2 className="leading-11 sm:leading-20">
-              <span className="block text-[28px] sm:text-[40px] lg:text-[64px] xl:text-[70px] pl-10 sm:pl-8 lg:pl-15 font-bold text-white">Welcome to</span>
-              <span className="block text-[28px] sm:text-[40px] lg:text-[64px] xl:text-[70px] pl-5 font-semibold text-white/40">our Postgenius</span>
+              <span className="block text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[70px] pl-8 sm:pl-8 lg:pl-15 font-bold text-white">Welcome to</span>
+              <span className="block text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[70px] pl-0 font-semibold text-white/40">our Postgenius</span>
             </h2>
           </div>
 
@@ -52,20 +52,21 @@ export default function Contact() {
 
             {/* Address Section */}
             <div>
-              <h3 className="text-xl sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 pl-18 sm:pl-0">
+              <h3 className="text-xl sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 pl-16 sm:pl-0">
                 Address
               </h3>
-              <p className="text-lg sm:text-base lg:text-lg text-gray-400 mb-2 pl-13 sm:pl-0">
-                Sun Builders Group,
-                Sindhubhavan <br />
-                Road, Ahmedabad, 
-                Gujarat 380059.
+              <p className="text-lg sm:text-base lg:text-lg text-gray-400 mb-2 pl-7 sm:pl-0">
+                <span className="block lg:inline">Sun Builders Group,</span>
+                <span className="block lg:inline lg:ml-1"> Sindhubhavan</span>
+                <br className="hidden lg:block" />
+                <span className="block lg:inline"> Ahmedabad,</span>
+                <span className="block lg:inline lg:ml-1"> Gujarat 380059.</span>
               </p>
               <a
                 href="https://maps.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg sm:text-base lg:text-lg text-blue-300 pl-13 sm:pl-0"
+                className="text-lg sm:text-base lg:text-lg text-blue-300 pl-7 sm:pl-0"
               >
                 Get Direction
               </a>
@@ -73,20 +74,20 @@ export default function Contact() {
 
             {/* Contact Numbers */}
             <div>
-              <p className="text-lg sm:text-base lg:text-lg text-gray-200 mb-2 pl-13 sm:pl-0">
+              <p className="text-lg sm:text-base lg:text-lg text-gray-200 mb-2 pl-7 sm:pl-0">
                 +91 90813 39933
               </p>
-              <p className="text-lg sm:text-base lg:text-lg text-gray-200 pl-13 sm:pl-0">
+              <p className="text-lg sm:text-base lg:text-lg text-gray-200 pl-7 sm:pl-0">
                 +91 81288 28888
               </p>
             </div>
 
             {/* Email Addresses */}
             <div>
-              <p className="text-lg sm:text-base lg:text-lg text-gray-200 mb-2 pl-12 sm:pl-0">
+              <p className="text-lg sm:text-base lg:text-lg text-gray-200 mb-2 pl-7 sm:pl-0">
                 postgenius@gmail.com
               </p>
-              <p className="text-lg sm:text-base lg:text-lg text-gray-200 pl-12 sm:pl-0">
+              <p className="text-lg sm:text-base lg:text-lg text-gray-200 pl-7 sm:pl-0">
                 nidhisai@gmail.com
               </p>
             </div>
