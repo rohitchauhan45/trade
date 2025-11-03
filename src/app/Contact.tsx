@@ -46,7 +46,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column */}
-          <div className="space-y-6 sm:space-y-8 lg:space-y-10">
+          <div className="pl-7 sm:pl-0 space-y-6 sm:space-y-8 lg:space-y-10">
             {/* Core Verticals Section */}
             
 
