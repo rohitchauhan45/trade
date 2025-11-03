@@ -41,7 +41,7 @@ export default function Contact() {
           <div className="flex pt-8 sm:pt-12 lg:pt-15 items-center sm:items-start">
             <h2 className="leading-11 sm:leading-20">
               <span className="block text-[28px] sm:text-[40px] lg:text-[64px] xl:text-[70px] pl-10 sm:pl-8 lg:pl-15 font-bold text-white">Welcome to</span>
-              <span className="block text-[28px] sm:text-[40px] lg:text-[64px] xl:text-[70px] font-semibold text-white/40">our Postgenius</span>
+              <span className="block text-[28px] sm:text-[40px] lg:text-[64px] xl:text-[70px] pl-5 font-semibold text-white/40">our Postgenius</span>
             </h2>
           </div>
 
@@ -83,10 +83,10 @@ export default function Contact() {
 
             {/* Email Addresses */}
             <div>
-              <p className="text-lg sm:text-base lg:text-lg text-gray-200 mb-2 pl-9 sm:pl-0">
+              <p className="text-lg sm:text-base lg:text-lg text-gray-200 mb-2 pl-12 sm:pl-0">
                 postgenius@gmail.com
               </p>
-              <p className="text-lg sm:text-base lg:text-lg text-gray-200 pl-9 sm:pl-0">
+              <p className="text-lg sm:text-base lg:text-lg text-gray-200 pl-12 sm:pl-0">
                 nidhisai@gmail.com
               </p>
             </div>
