@@ -14,7 +14,7 @@ export default function About() {
                     <Navbar />
                 </div>
                 <div className="text-center mb-16">
-                    <h1 className="text-3xl sm:text-5xl font-bold mb-6">
+                    <h1 className="text-3xl sm:text-5xl font-bold mb-6 text-white">
                         About <span className="text-white/40">Postgenius</span>
                     </h1>
                     <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -25,7 +25,7 @@ export default function About() {
 
                 {/* Features Section */}
                 <div className="mb-16">
-                    <h2 className="text-3xl font-bold text-center mb-12">
+                    <h2 className="text-3xl font-bold text-center mb-12 text-white">
                         Platform <span className="text-white/40">Integrations</span>
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
