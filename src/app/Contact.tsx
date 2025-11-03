@@ -21,7 +21,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-dvh px-2 sm:px-4 lg:px-12 pt-4 pb-4 sm:pb-6 lg:pb-8 bg-gradient-to-br from-[#0b0f17] to-[#0a0a0a] sm:from-[#f8fafc] sm:to-[#eef2ff] dark:from-[#0b0f17] dark:to-[#0a0a0a] text-white font-sans">
-      <div className="mx-auto max-w-7xl">
+      <div className="sm:mx-auto max-w-7xl">
         {/* Navbar */}
         <div className="mb-6">
           <Navbar/>
@@ -36,12 +36,12 @@ export default function Contact() {
         </div>
 
         {/* Main Content Area */}
-        <div className="mt-6 pl-20 sm:pl-0 sm:mt-8 lg:mt-10 grid gap-8 sm:gap-10 lg:gap-12 grid-cols-1 lg:grid-cols-2">
+        <div className="mt-6 pl-13 sm:pl-0 sm:mt-8 lg:mt-10 grid gap-8 sm:gap-10 lg:gap-12  lg:grid-cols-2">
           {/* Left Column */}
           <div className="flex pt-8 sm:pt-12 lg:pt-15 items-center sm:items-start">
             <h2 className="leading-11 sm:leading-20">
               <span className="block text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[70px] pl-8 sm:pl-8 lg:pl-15 font-bold text-white">Welcome to</span>
-              <span className="block text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[70px] pl-0 font-semibold text-white/40">our Postgenius</span>
+              <span className="block text-[40px] sm:text-[50px] lg:text-[64px] xl:text-[70px] font-semibold text-white/40">our Postgenius</span>
             </h2>
           </div>
 
